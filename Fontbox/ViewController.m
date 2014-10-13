@@ -16,13 +16,29 @@
 #pragma mark - // DEFINITIONS (Private) //
 
 @interface ViewController ()
+@property (nonatomic, strong) IBOutlet UILabel *labelHeadline;
+@property (nonatomic, strong) IBOutlet UILabel *labelSubheadline;
+@property (nonatomic, strong) IBOutlet UILabel *labelBody;
+@property (nonatomic, strong) IBOutlet UILabel *labelFootnote;
+@property (nonatomic, strong) IBOutlet UILabel *labelCaption1;
+@property (nonatomic, strong) IBOutlet UILabel *labelCaption2;
+@property (nonatomic, strong) IBOutlet UILabel *labelCurrentSize;
 - (void)setup;
 - (void)teardown;
+- (IBAction)buttonActionDecrease:(id)sender;
+- (IBAction)buttonActionIncrease:(id)sender;
 @end
 
 @implementation ViewController
 
 #pragma mark - // SETTERS AND GETTERS //
+
+@synthesize labelHeadline = _labelHeadline;
+@synthesize labelSubheadline = _labelSubheadline;
+@synthesize labelBody = _labelBody;
+@synthesize labelFootnote = _labelFootnote;
+@synthesize labelCaption1 = _labelCaption1;
+@synthesize labelCaption2 = _labelCaption2;
 
 #pragma mark - // INITS AND LOADS //
 
@@ -114,6 +130,17 @@
 - (void)teardown
 {
     if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKSetup rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
+}
+
+- (IBAction)buttonActionDecrease:(id)sender
+{
+    if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
+    
+}
+
+- (IBAction)buttonActionIncrease:(id)sender
+{
+    if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
 @end

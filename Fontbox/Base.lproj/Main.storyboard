@@ -132,6 +132,9 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="buttonActionDecrease:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kfk-jg-pvU"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1P-ru-MKl">
                                         <rect key="frame" x="86" y="33" width="148" height="21"/>
@@ -147,6 +150,9 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="buttonActionIncrease:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kYt-5H-u6q"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -198,6 +204,15 @@
                             <constraint firstItem="HXK-eD-mAW" firstAttribute="height" secondItem="bMk-8N-2hQ" secondAttribute="height" id="zg4-iA-9TN"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="labelBody" destination="fLQ-jR-2Py" id="djl-nA-3iK"/>
+                        <outlet property="labelCaption1" destination="EVk-Eg-E2b" id="OBT-jc-B2n"/>
+                        <outlet property="labelCaption2" destination="w86-PS-vBp" id="fn7-4e-Cjr"/>
+                        <outlet property="labelCurrentSize" destination="h1P-ru-MKl" id="pes-K2-RvD"/>
+                        <outlet property="labelFootnote" destination="b91-9e-gmN" id="m68-o6-UiO"/>
+                        <outlet property="labelHeadline" destination="0Ip-Do-ceW" id="JjQ-sz-GR9"/>
+                        <outlet property="labelSubheadline" destination="Vuk-Pd-aNg" id="S9u-66-uep"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
