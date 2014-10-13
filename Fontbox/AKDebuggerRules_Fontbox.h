@@ -1,6 +1,6 @@
 //
-//  AKDebuggerRules_AKSuperViewController.h
-//  AKSuperViewController
+//  AKDebuggerRules_Fontbox.h
+//  Fontbox
 //
 //  Created by Ken M. Haggerty on 10/11/13.
 //  Copyright (c) 2013 Eureka Valley Co. All rights reserved.
@@ -17,7 +17,7 @@
 
 #pragma mark - // DEFINITIONS (Public) //
 
-@interface AKDebuggerRules_AKSuperViewController : NSObject <AKDebuggerRules>
+@interface AKDebuggerRules_Fontbox : NSObject <AKDebuggerRules>
 
 // RULES (General) //
 
