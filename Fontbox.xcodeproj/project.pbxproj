@@ -12,7 +12,6 @@
 		7D569D8E19EC6BBA00BC2C7F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D569D8D19EC6BBA00BC2C7F /* ViewController.m */; };
 		7D569D9119EC6BBA00BC2C7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D569D8F19EC6BBA00BC2C7F /* Main.storyboard */; };
 		7D569D9319EC6BBA00BC2C7F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D569D9219EC6BBA00BC2C7F /* Images.xcassets */; };
-		7D569D9619EC6BBA00BC2C7F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D569D9419EC6BBA00BC2C7F /* LaunchScreen.xib */; };
 		7D569DA219EC6BBA00BC2C7F /* FontboxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D569DA119EC6BBA00BC2C7F /* FontboxTests.m */; };
 		7D569DAD19EC6BCA00BC2C7F /* AKDebugger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D569DAC19EC6BCA00BC2C7F /* AKDebugger.m */; };
 		7D569DB119EC6BDB00BC2C7F /* AKDebuggerRules_Fontbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D569DB019EC6BDB00BC2C7F /* AKDebuggerRules_Fontbox.m */; };
@@ -38,7 +37,6 @@
 		7D569D8D19EC6BBA00BC2C7F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		7D569D9019EC6BBA00BC2C7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7D569D9219EC6BBA00BC2C7F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		7D569D9519EC6BBA00BC2C7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		7D569D9B19EC6BBA00BC2C7F /* FontboxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FontboxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D569DA019EC6BBA00BC2C7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D569DA119EC6BBA00BC2C7F /* FontboxTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FontboxTests.m; sourceTree = "<group>"; };
@@ -94,7 +92,6 @@
 				7D569D8D19EC6BBA00BC2C7F /* ViewController.m */,
 				7D569D8F19EC6BBA00BC2C7F /* Main.storyboard */,
 				7D569D9219EC6BBA00BC2C7F /* Images.xcassets */,
-				7D569D9419EC6BBA00BC2C7F /* LaunchScreen.xib */,
 				7D569D8519EC6BBA00BC2C7F /* Supporting Files */,
 			);
 			path = Fontbox;
@@ -218,7 +215,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D569D9119EC6BBA00BC2C7F /* Main.storyboard in Resources */,
-				7D569D9619EC6BBA00BC2C7F /* LaunchScreen.xib in Resources */,
 				7D569D9319EC6BBA00BC2C7F /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,14 +266,6 @@
 				7D569D9019EC6BBA00BC2C7F /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		7D569D9419EC6BBA00BC2C7F /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7D569D9519EC6BBA00BC2C7F /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -365,9 +353,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = Fontbox/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -375,9 +366,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = Fontbox/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
