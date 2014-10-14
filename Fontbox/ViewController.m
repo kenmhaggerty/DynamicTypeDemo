@@ -176,7 +176,7 @@
                 [self.labelFootnoteRight setFont:[UIFont boldSystemFontOfSize:self.fontSizeForRightLabels]];
                 [self.labelCaption1Right setFont:[UIFont boldSystemFontOfSize:self.fontSizeForRightLabels]];
                 [self.labelCaption2Right setFont:[UIFont boldSystemFontOfSize:self.fontSizeForRightLabels]];
-                [self.labelFontSizeForRightLabels setText:[NSString stringWithFormat:@"Right Labels: %f pts (Bold)", self.fontSizeForRightLabels]];
+                [self.labelFontSizeForRightLabels setText:[NSString stringWithFormat:@"Right Labels: %.01f pts (Bold)", self.fontSizeForRightLabels]];
             }
             else
             {
