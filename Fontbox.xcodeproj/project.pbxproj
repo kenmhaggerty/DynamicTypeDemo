@@ -17,6 +17,7 @@
 		7D569DB119EC6BDB00BC2C7F /* AKDebuggerRules_Fontbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D569DB019EC6BDB00BC2C7F /* AKDebuggerRules_Fontbox.m */; };
 		7D569DB519EC822E00BC2C7F /* AKSystemInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D569DB419EC822E00BC2C7F /* AKSystemInfo.m */; };
 		7D56E05119ECBE1200A1D580 /* PrivateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D56E05019ECBE1200A1D580 /* PrivateInfo.m */; };
+		7D56E05519ED938000A1D580 /* UIFont+Dynamic.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D56E05419ED938000A1D580 /* UIFont+Dynamic.m */; };
 		8C9244C0B6FF1DBC6144786E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C0613C15DE8C13972CB647 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,8 @@
 		7D569DB419EC822E00BC2C7F /* AKSystemInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AKSystemInfo.m; path = ../../AKSuperViewController/AKSuperViewController/AKSystemInfo.m; sourceTree = "<group>"; };
 		7D56E04F19ECBE1200A1D580 /* PrivateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateInfo.h; sourceTree = "<group>"; };
 		7D56E05019ECBE1200A1D580 /* PrivateInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateInfo.m; sourceTree = "<group>"; };
+		7D56E05319ED938000A1D580 /* UIFont+Dynamic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+Dynamic.h"; sourceTree = "<group>"; };
+		7D56E05419ED938000A1D580 /* UIFont+Dynamic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Dynamic.m"; sourceTree = "<group>"; };
 		86C0613C15DE8C13972CB647 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -122,6 +125,8 @@
 				7D569D8A19EC6BBA00BC2C7F /* AppDelegate.m */,
 				7D569D8C19EC6BBA00BC2C7F /* ViewController.h */,
 				7D569D8D19EC6BBA00BC2C7F /* ViewController.m */,
+				7D56E05319ED938000A1D580 /* UIFont+Dynamic.h */,
+				7D56E05419ED938000A1D580 /* UIFont+Dynamic.m */,
 				7D569D8F19EC6BBA00BC2C7F /* Main.storyboard */,
 				7D569D9219EC6BBA00BC2C7F /* Images.xcassets */,
 				7D569D8519EC6BBA00BC2C7F /* Supporting Files */,
@@ -318,6 +323,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D56E05519ED938000A1D580 /* UIFont+Dynamic.m in Sources */,
 				7D569DAD19EC6BCA00BC2C7F /* AKDebugger.m in Sources */,
 				7D569D8E19EC6BBA00BC2C7F /* ViewController.m in Sources */,
 				7D569DB519EC822E00BC2C7F /* AKSystemInfo.m in Sources */,
