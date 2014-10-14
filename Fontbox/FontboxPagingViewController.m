@@ -64,6 +64,7 @@
     if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKSetup rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
     
     [super viewWillAppear:animated];
+    [self.scrollView setContentSize:self.viewForScrollView.frame.size];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -71,9 +72,6 @@
     if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKSetup rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
     
     [super viewDidAppear:animated];
-    
-    [self.scrollView setContentSize:self.viewForScrollView.frame.size];
-    NSLog(@"[TEST] contentSize = (%f, %f)", self.scrollView.contentSize.width, self.scrollView.contentSize.height);
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -109,6 +107,13 @@
 #pragma mark - // DELEGATED METHODS //
 
 #pragma mark - // OVERWRITTEN METHODS //
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
+    
+    [self.scrollView setContentSize:self.viewForScrollView.frame.size];
+}
 
 #pragma mark - // PRIVATE METHODS //
 
