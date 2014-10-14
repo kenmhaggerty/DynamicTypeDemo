@@ -31,7 +31,7 @@
 - (void)teardown;
 - (IBAction)buttonActionDecrease:(id)sender;
 - (IBAction)buttonActionIncrease:(id)sender;
-- (void)preferredTextSizeDidChange:(NSNotification *)notification;
+- (void)preferredContentSizeCategoryDidChange:(NSNotification *)notification;
 @end
 
 @implementation ViewController
@@ -153,7 +153,7 @@
     
     if ([AKSystemInfo iOSVersion] >= 7.0)
     {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferredTextSizeDidChange:) name:UIContentSizeCategoryDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferredContentSizeCategoryDidChange:) name:UIContentSizeCategoryDidChangeNotification object:nil];
         [self addObserver:self forKeyPath:NSStringFromSelector(@selector(preferredContentSizeCategory)) options:NSKeyValueObservingOptionOld context:NULL];
         [self setPreferredContentSizeCategory:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     }
@@ -186,7 +186,7 @@
     if (indexOfCurrentContentSize < [CONTENT_SIZE_ARRAY count]-1) [self setPreferredContentSizeCategory:[CONTENT_SIZE_ARRAY objectAtIndex:++indexOfCurrentContentSize]];
 }
 
-- (void)preferredTextSizeDidChange:(NSNotification *)notification
+- (void)preferredContentSizeCategoryDidChange:(NSNotification *)notification
 {
     if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
     
