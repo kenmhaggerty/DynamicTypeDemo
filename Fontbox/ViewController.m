@@ -106,6 +106,9 @@
     [self setPreferredContentSizeCategory:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     [self setFontSizeForRightLabels:DEFAULT_FONT_SIZE_FOR_RIGHT_LABELS];
     [self setRightLabelsAreBold:DEFAULT_RIGHT_LABELS_ARE_BOLD];
+    [self.labelPreferredContentSizeCategory setNumberOfLines:1];
+    [self.labelPreferredContentSizeCategory setLineBreakMode:NSLineBreakByTruncatingHead];
+    [self.labelPreferredContentSizeCategory setAdjustsFontSizeToFitWidth:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
