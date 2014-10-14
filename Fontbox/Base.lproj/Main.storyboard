@@ -361,11 +361,11 @@
                         <outlet property="labelCaption1Right" destination="IPx-Nc-k1Z" id="N9a-hH-lAT"/>
                         <outlet property="labelCaption2Left" destination="w86-PS-vBp" id="NWt-91-naV"/>
                         <outlet property="labelCaption2Right" destination="KzP-1N-BBf" id="nlt-Dc-rrX"/>
-                        <outlet property="labelCurrentSize" destination="h1P-ru-MKl" id="pes-K2-RvD"/>
                         <outlet property="labelFootnoteLeft" destination="b91-9e-gmN" id="eEv-DD-JrU"/>
                         <outlet property="labelFootnoteRight" destination="4dG-1s-s16" id="quk-Ma-Ss4"/>
                         <outlet property="labelHeadlineLeft" destination="0Ip-Do-ceW" id="ct3-4W-kOn"/>
                         <outlet property="labelHeadlineRight" destination="TkO-vc-VrT" id="IUR-tO-rEW"/>
+                        <outlet property="labelPreferredContentSizeCategory" destination="h1P-ru-MKl" id="aKq-2d-08O"/>
                         <outlet property="labelSubheadlineLeft" destination="Vuk-Pd-aNg" id="4J9-PR-OOA"/>
                         <outlet property="labelSubheadlineRight" destination="SBh-TJ-723" id="bnL-tw-GDp"/>
                     </connections>

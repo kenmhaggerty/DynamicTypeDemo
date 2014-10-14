@@ -31,7 +31,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *labelFootnoteRight;
 @property (nonatomic, strong) IBOutlet UILabel *labelCaption1Right;
 @property (nonatomic, strong) IBOutlet UILabel *labelCaption2Right;
-@property (nonatomic, strong) IBOutlet UILabel *labelCurrentSize;
+@property (nonatomic, strong) IBOutlet UILabel *labelPreferredContentSizeCategory;
 @property (nonatomic, strong) NSString *preferredContentSizeCategory;
 - (void)setup;
 - (void)teardown;
@@ -56,7 +56,7 @@
 @synthesize labelFootnoteRight = _labelFootnoteRight;
 @synthesize labelCaption1Right = _labelCaption1Right;
 @synthesize labelCaption2Right = _labelCaption2Right;
-@synthesize labelCurrentSize = _labelCurrentSize;
+@synthesize labelPreferredContentSizeCategory = _labelPreferredContentSizeCategory;
 @synthesize preferredContentSizeCategory = preferredContentSizeCategory;
 
 #pragma mark - // INITS AND LOADS //
@@ -147,13 +147,13 @@
     {
         if ([keyPath isEqualToString:NSStringFromSelector(@selector(preferredContentSizeCategory))])
         {
-            [self.labelHeadline setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]];
-            [self.labelSubheadline setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline]];
-            [self.labelBody setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleBody]];
-            [self.labelFootnote setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleFootnote]];
-            [self.labelCaption1 setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleCaption1]];
-            [self.labelCaption2 setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleCaption2]];
-            [self.labelCurrentSize setText:[NSString stringWithFormat:@"%lu", [CONTENT_SIZE_ARRAY indexOfObject:self.preferredContentSizeCategory]+1]];
+            [self.labelHeadlineLeft setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]];
+            [self.labelSubheadlineLeft setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline]];
+            [self.labelBodyLeft setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleBody]];
+            [self.labelFootnoteLeft setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleFootnote]];
+            [self.labelCaption1Left setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleCaption1]];
+            [self.labelCaption2Left setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleCaption2]];
+            [self.labelPreferredContentSizeCategory setText:self.preferredContentSizeCategory];
         }
     }
 }
