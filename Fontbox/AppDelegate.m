@@ -12,6 +12,8 @@
 
 #import "AppDelegate.h"
 #import "AKDebugger.h"
+#import <Lookback/Lookback.h>
+#import "PrivateInfo.h"
 
 #pragma mark - // DEFINITIONS (Private) //
 
@@ -28,7 +30,8 @@
 {
     if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKSetup rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
     
-    // Override point for customization after application launch.
+    [Lookback_Weak setupWithAppToken:[PrivateInfo lookbackAppToken]];
+    [Lookback_Weak lookback].shakeToRecord = YES;
     return YES;
 }
 
