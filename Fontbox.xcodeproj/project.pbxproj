@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D1F92F119EDB938007118CA /* FontboxPagingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1F92F019EDB938007118CA /* FontboxPagingViewController.m */; };
 		7D569D8819EC6BBA00BC2C7F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D569D8719EC6BBA00BC2C7F /* main.m */; };
 		7D569D8B19EC6BBA00BC2C7F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D569D8A19EC6BBA00BC2C7F /* AppDelegate.m */; };
 		7D569D8E19EC6BBA00BC2C7F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D569D8D19EC6BBA00BC2C7F /* ViewController.m */; };
@@ -34,6 +35,8 @@
 /* Begin PBXFileReference section */
 		0AEB04474C19C0FCCB4E3A73 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		372E2751FDB27E88C8CCCDBA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		7D1F92EF19EDB938007118CA /* FontboxPagingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontboxPagingViewController.h; sourceTree = "<group>"; };
+		7D1F92F019EDB938007118CA /* FontboxPagingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontboxPagingViewController.m; sourceTree = "<group>"; };
 		7D569D8219EC6BBA00BC2C7F /* Fontbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fontbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D569D8619EC6BBA00BC2C7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D569D8719EC6BBA00BC2C7F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -128,6 +131,8 @@
 				7D56E05319ED938000A1D580 /* UIFont+Dynamic.h */,
 				7D56E05419ED938000A1D580 /* UIFont+Dynamic.m */,
 				7D569D8F19EC6BBA00BC2C7F /* Main.storyboard */,
+				7D1F92EF19EDB938007118CA /* FontboxPagingViewController.h */,
+				7D1F92F019EDB938007118CA /* FontboxPagingViewController.m */,
 				7D569D9219EC6BBA00BC2C7F /* Images.xcassets */,
 				7D569D8519EC6BBA00BC2C7F /* Supporting Files */,
 			);
@@ -323,6 +328,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D1F92F119EDB938007118CA /* FontboxPagingViewController.m in Sources */,
 				7D56E05519ED938000A1D580 /* UIFont+Dynamic.m in Sources */,
 				7D569DAD19EC6BCA00BC2C7F /* AKDebugger.m in Sources */,
 				7D569D8E19EC6BBA00BC2C7F /* ViewController.m in Sources */,
