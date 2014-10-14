@@ -15,6 +15,7 @@
 		7D569DA219EC6BBA00BC2C7F /* FontboxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D569DA119EC6BBA00BC2C7F /* FontboxTests.m */; };
 		7D569DAD19EC6BCA00BC2C7F /* AKDebugger.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D569DAC19EC6BCA00BC2C7F /* AKDebugger.m */; };
 		7D569DB119EC6BDB00BC2C7F /* AKDebuggerRules_Fontbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D569DB019EC6BDB00BC2C7F /* AKDebuggerRules_Fontbox.m */; };
+		7D569DB519EC822E00BC2C7F /* AKSystemInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D569DB419EC822E00BC2C7F /* AKSystemInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,8 @@
 		7D569DAC19EC6BCA00BC2C7F /* AKDebugger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AKDebugger.m; path = ../../AKSuperViewController/AKSuperViewController/AKDebugger.m; sourceTree = "<group>"; };
 		7D569DAF19EC6BDB00BC2C7F /* AKDebuggerRules_Fontbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKDebuggerRules_Fontbox.h; sourceTree = "<group>"; };
 		7D569DB019EC6BDB00BC2C7F /* AKDebuggerRules_Fontbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKDebuggerRules_Fontbox.m; sourceTree = "<group>"; };
+		7D569DB319EC822E00BC2C7F /* AKSystemInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AKSystemInfo.h; path = ../../AKSuperViewController/AKSuperViewController/AKSystemInfo.h; sourceTree = "<group>"; };
+		7D569DB419EC822E00BC2C7F /* AKSystemInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AKSystemInfo.m; path = ../../AKSuperViewController/AKSuperViewController/AKSystemInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				7D569DAE19EC6BCF00BC2C7F /* AKDebugger */,
+				7D569DB619EC823300BC2C7F /* AKSystemInfo */,
 				7D569D8919EC6BBA00BC2C7F /* AppDelegate.h */,
 				7D569D8A19EC6BBA00BC2C7F /* AppDelegate.m */,
 				7D569D8C19EC6BBA00BC2C7F /* ViewController.h */,
@@ -132,6 +136,15 @@
 				7D569DB019EC6BDB00BC2C7F /* AKDebuggerRules_Fontbox.m */,
 			);
 			name = AKDebugger;
+			sourceTree = "<group>";
+		};
+		7D569DB619EC823300BC2C7F /* AKSystemInfo */ = {
+			isa = PBXGroup;
+			children = (
+				7D569DB319EC822E00BC2C7F /* AKSystemInfo.h */,
+				7D569DB419EC822E00BC2C7F /* AKSystemInfo.m */,
+			);
+			name = AKSystemInfo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,6 +248,7 @@
 			files = (
 				7D569DAD19EC6BCA00BC2C7F /* AKDebugger.m in Sources */,
 				7D569D8E19EC6BBA00BC2C7F /* ViewController.m in Sources */,
+				7D569DB519EC822E00BC2C7F /* AKSystemInfo.m in Sources */,
 				7D569DB119EC6BDB00BC2C7F /* AKDebuggerRules_Fontbox.m in Sources */,
 				7D569D8B19EC6BBA00BC2C7F /* AppDelegate.m in Sources */,
 				7D569D8819EC6BBA00BC2C7F /* main.m in Sources */,

@@ -12,8 +12,11 @@
 
 #import "ViewController.h"
 #import "AKDebugger.h"
+#import "AKSystemInfo.h"
 
 #pragma mark - // DEFINITIONS (Private) //
+
+#define CONTENT_SIZE_ARRAY [NSArray arrayWithObjects:UIContentSizeCategoryExtraSmall, UIContentSizeCategorySmall, UIContentSizeCategoryMedium, UIContentSizeCategoryLarge, UIContentSizeCategoryExtraLarge, UIContentSizeCategoryExtraExtraLarge, UIContentSizeCategoryExtraExtraExtraLarge, UIContentSizeCategoryAccessibilityMedium, UIContentSizeCategoryAccessibilityLarge, UIContentSizeCategoryAccessibilityExtraLarge, UIContentSizeCategoryAccessibilityExtraExtraLarge, UIContentSizeCategoryAccessibilityExtraExtraExtraLarge, nil]
 
 @interface ViewController ()
 @property (nonatomic, strong) IBOutlet UILabel *labelHeadline;
@@ -23,10 +26,12 @@
 @property (nonatomic, strong) IBOutlet UILabel *labelCaption1;
 @property (nonatomic, strong) IBOutlet UILabel *labelCaption2;
 @property (nonatomic, strong) IBOutlet UILabel *labelCurrentSize;
+@property (nonatomic, strong) NSString *preferredContentSizeCategory;
 - (void)setup;
 - (void)teardown;
 - (IBAction)buttonActionDecrease:(id)sender;
 - (IBAction)buttonActionIncrease:(id)sender;
+- (void)preferredTextSizeDidChange:(NSNotification *)notification;
 @end
 
 @implementation ViewController
@@ -39,6 +44,7 @@
 @synthesize labelFootnote = _labelFootnote;
 @synthesize labelCaption1 = _labelCaption1;
 @synthesize labelCaption2 = _labelCaption2;
+@synthesize preferredContentSizeCategory = preferredContentSizeCategory;
 
 #pragma mark - // INITS AND LOADS //
 
@@ -120,27 +126,71 @@
 
 #pragma mark - // OVERWRITTEN METHODS //
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
+    
+    if ([object isEqual:self])
+    {
+        if ([keyPath isEqualToString:NSStringFromSelector(@selector(preferredContentSizeCategory))])
+        {
+            [self.labelHeadline setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]];
+            [self.labelSubheadline setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline]];
+            [self.labelBody setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleBody]];
+            [self.labelFootnote setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleFootnote]];
+            [self.labelCaption1 setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleCaption1]];
+            [self.labelCaption2 setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleCaption2]];
+            [self.labelCurrentSize setText:[NSString stringWithFormat:@"%lu", [CONTENT_SIZE_ARRAY indexOfObject:self.preferredContentSizeCategory]+1]];
+        }
+    }
+}
+
 #pragma mark - // PRIVATE METHODS //
 
 - (void)setup
 {
     if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKSetup rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
+    
+    if ([AKSystemInfo iOSVersion] >= 7.0)
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(preferredTextSizeDidChange:) name:UIContentSizeCategoryDidChangeNotification object:nil];
+        [self addObserver:self forKeyPath:NSStringFromSelector(@selector(preferredContentSizeCategory)) options:NSKeyValueObservingOptionOld context:NULL];
+        [self setPreferredContentSizeCategory:[[UIApplication sharedApplication] preferredContentSizeCategory]];
+    }
 }
 
 - (void)teardown
 {
     if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKSetup rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
+    
+    if ([AKSystemInfo iOSVersion] >= 7.0)
+    {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:UIContentSizeCategoryDidChangeNotification object:nil];
+        [self removeObserver:self forKeyPath:NSStringFromSelector(@selector(preferredContentSizeCategory))];
+    }
 }
 
 - (IBAction)buttonActionDecrease:(id)sender
 {
     if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
     
+    NSUInteger indexOfCurrentContentSize = [CONTENT_SIZE_ARRAY indexOfObject:self.preferredContentSizeCategory];
+    if (indexOfCurrentContentSize > 0) [self setPreferredContentSizeCategory:[CONTENT_SIZE_ARRAY objectAtIndex:--indexOfCurrentContentSize]];
 }
 
 - (IBAction)buttonActionIncrease:(id)sender
 {
     if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
+    
+    NSUInteger indexOfCurrentContentSize = [CONTENT_SIZE_ARRAY indexOfObject:self.preferredContentSizeCategory];
+    if (indexOfCurrentContentSize < [CONTENT_SIZE_ARRAY count]-1) [self setPreferredContentSizeCategory:[CONTENT_SIZE_ARRAY objectAtIndex:++indexOfCurrentContentSize]];
+}
+
+- (void)preferredTextSizeDidChange:(NSNotification *)notification
+{
+    if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
+    
+    [self setPreferredContentSizeCategory:[[UIApplication sharedApplication] preferredContentSizeCategory]];
 }
 
 @end
