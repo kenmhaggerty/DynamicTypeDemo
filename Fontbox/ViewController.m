@@ -16,7 +16,7 @@
 
 #pragma mark - // DEFINITIONS (Private) //
 
-#define CONTENT_SIZE_ARRAY [NSArray arrayWithObjects:UIContentSizeCategoryExtraSmall, UIContentSizeCategorySmall, UIContentSizeCategoryMedium, UIContentSizeCategoryLarge, UIContentSizeCategoryExtraLarge, UIContentSizeCategoryExtraExtraLarge, UIContentSizeCategoryExtraExtraExtraLarge, UIContentSizeCategoryAccessibilityMedium, UIContentSizeCategoryAccessibilityLarge, UIContentSizeCategoryAccessibilityExtraLarge, UIContentSizeCategoryAccessibilityExtraExtraLarge, UIContentSizeCategoryAccessibilityExtraExtraExtraLarge, nil]
+#define DEFAULT_FONT_SIZE_FOR_RIGHT_LABELS 12.0
 
 @interface ViewController ()
 @property (nonatomic, strong) IBOutlet UILabel *labelHeadlineLeft;
@@ -32,7 +32,9 @@
 @property (nonatomic, strong) IBOutlet UILabel *labelCaption1Right;
 @property (nonatomic, strong) IBOutlet UILabel *labelCaption2Right;
 @property (nonatomic, strong) IBOutlet UILabel *labelPreferredContentSizeCategory;
+@property (nonatomic, strong) IBOutlet UILabel *labelFontSizeForRightLabels;
 @property (nonatomic, strong) NSString *preferredContentSizeCategory;
+@property (nonatomic) CGFloat fontSizeForRightLabels;
 - (void)setup;
 - (void)teardown;
 - (IBAction)buttonActionDecrease:(id)sender;
@@ -57,7 +59,9 @@
 @synthesize labelCaption1Right = _labelCaption1Right;
 @synthesize labelCaption2Right = _labelCaption2Right;
 @synthesize labelPreferredContentSizeCategory = _labelPreferredContentSizeCategory;
+@synthesize labelFontSizeForRightLabels = _labelFontSizeForRightLabels;
 @synthesize preferredContentSizeCategory = preferredContentSizeCategory;
+@synthesize fontSizeForRightLabels = _fontSizeForRightLabels;
 
 #pragma mark - // INITS AND LOADS //
 
@@ -155,6 +159,16 @@
             [self.labelCaption2Left setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleCaption2]];
             [self.labelPreferredContentSizeCategory setText:self.preferredContentSizeCategory];
         }
+        else if ([keyPath isEqualToString:NSStringFromSelector(@selector(fontSizeForRightLabels))])
+        {
+            [self.labelHeadlineRight setFont:[UIFont systemFontOfSize:self.fontSizeForRightLabels]];
+            [self.labelSubheadlineRight setFont:[UIFont systemFontOfSize:self.fontSizeForRightLabels]];
+            [self.labelBodyRight setFont:[UIFont systemFontOfSize:self.fontSizeForRightLabels]];
+            [self.labelFootnoteRight setFont:[UIFont systemFontOfSize:self.fontSizeForRightLabels]];
+            [self.labelCaption1Right setFont:[UIFont systemFontOfSize:self.fontSizeForRightLabels]];
+            [self.labelCaption2Right setFont:[UIFont systemFontOfSize:self.fontSizeForRightLabels]];
+            [self.labelFontSizeForRightLabels setText:[NSString stringWithFormat:@"Right Labels: %f pts", self.fontSizeForRightLabels]];
+        }
     }
 }
 
@@ -170,6 +184,7 @@
         [self addObserver:self forKeyPath:NSStringFromSelector(@selector(preferredContentSizeCategory)) options:NSKeyValueObservingOptionOld context:NULL];
         [self setPreferredContentSizeCategory:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     }
+    [self addObserver:self forKeyPath:NSStringFromSelector(@selector(fontSizeForRightLabels)) options:NSKeyValueObservingOptionOld context:NULL];
 }
 
 - (void)teardown
@@ -181,6 +196,7 @@
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIContentSizeCategoryDidChangeNotification object:nil];
         [self removeObserver:self forKeyPath:NSStringFromSelector(@selector(preferredContentSizeCategory))];
     }
+    [self removeObserver:self forKeyPath:NSStringFromSelector(@selector(fontSizeForRightLabels)) context:NULL];
 }
 
 - (IBAction)buttonActionDecrease:(id)sender
