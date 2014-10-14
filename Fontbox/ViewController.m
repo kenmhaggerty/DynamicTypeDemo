@@ -19,12 +19,18 @@
 #define CONTENT_SIZE_ARRAY [NSArray arrayWithObjects:UIContentSizeCategoryExtraSmall, UIContentSizeCategorySmall, UIContentSizeCategoryMedium, UIContentSizeCategoryLarge, UIContentSizeCategoryExtraLarge, UIContentSizeCategoryExtraExtraLarge, UIContentSizeCategoryExtraExtraExtraLarge, UIContentSizeCategoryAccessibilityMedium, UIContentSizeCategoryAccessibilityLarge, UIContentSizeCategoryAccessibilityExtraLarge, UIContentSizeCategoryAccessibilityExtraExtraLarge, UIContentSizeCategoryAccessibilityExtraExtraExtraLarge, nil]
 
 @interface ViewController ()
-@property (nonatomic, strong) IBOutlet UILabel *labelHeadline;
-@property (nonatomic, strong) IBOutlet UILabel *labelSubheadline;
-@property (nonatomic, strong) IBOutlet UILabel *labelBody;
-@property (nonatomic, strong) IBOutlet UILabel *labelFootnote;
-@property (nonatomic, strong) IBOutlet UILabel *labelCaption1;
-@property (nonatomic, strong) IBOutlet UILabel *labelCaption2;
+@property (nonatomic, strong) IBOutlet UILabel *labelHeadlineLeft;
+@property (nonatomic, strong) IBOutlet UILabel *labelSubheadlineLeft;
+@property (nonatomic, strong) IBOutlet UILabel *labelBodyLeft;
+@property (nonatomic, strong) IBOutlet UILabel *labelFootnoteLeft;
+@property (nonatomic, strong) IBOutlet UILabel *labelCaption1Left;
+@property (nonatomic, strong) IBOutlet UILabel *labelCaption2Left;
+@property (nonatomic, strong) IBOutlet UILabel *labelHeadlineRight;
+@property (nonatomic, strong) IBOutlet UILabel *labelSubheadlineRight;
+@property (nonatomic, strong) IBOutlet UILabel *labelBodyRight;
+@property (nonatomic, strong) IBOutlet UILabel *labelFootnoteRight;
+@property (nonatomic, strong) IBOutlet UILabel *labelCaption1Right;
+@property (nonatomic, strong) IBOutlet UILabel *labelCaption2Right;
 @property (nonatomic, strong) IBOutlet UILabel *labelCurrentSize;
 @property (nonatomic, strong) NSString *preferredContentSizeCategory;
 - (void)setup;
@@ -38,12 +44,19 @@
 
 #pragma mark - // SETTERS AND GETTERS //
 
-@synthesize labelHeadline = _labelHeadline;
-@synthesize labelSubheadline = _labelSubheadline;
-@synthesize labelBody = _labelBody;
-@synthesize labelFootnote = _labelFootnote;
-@synthesize labelCaption1 = _labelCaption1;
-@synthesize labelCaption2 = _labelCaption2;
+@synthesize labelHeadlineLeft = _labelHeadlineLeft;
+@synthesize labelSubheadlineLeft = _labelSubheadlineLeft;
+@synthesize labelBodyLeft = _labelBodyLeft;
+@synthesize labelFootnoteLeft = _labelFootnoteLeft;
+@synthesize labelCaption1Left = _labelCaption1Left;
+@synthesize labelCaption2Left = _labelCaption2Left;
+@synthesize labelHeadlineRight = _labelHeadlineRight;
+@synthesize labelSubheadlineRight = _labelSubheadlineRight;
+@synthesize labelBodyRight = _labelBodyRight;
+@synthesize labelFootnoteRight = _labelFootnoteRight;
+@synthesize labelCaption1Right = _labelCaption1Right;
+@synthesize labelCaption2Right = _labelCaption2Right;
+@synthesize labelCurrentSize = _labelCurrentSize;
 @synthesize preferredContentSizeCategory = preferredContentSizeCategory;
 
 #pragma mark - // INITS AND LOADS //
