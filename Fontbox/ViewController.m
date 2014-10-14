@@ -186,7 +186,7 @@
                 [self.labelFootnoteRight setFont:[UIFont systemFontOfSize:self.fontSizeForRightLabels]];
                 [self.labelCaption1Right setFont:[UIFont systemFontOfSize:self.fontSizeForRightLabels]];
                 [self.labelCaption2Right setFont:[UIFont systemFontOfSize:self.fontSizeForRightLabels]];
-                [self.labelFontSizeForRightLabels setText:[NSString stringWithFormat:@"Right Labels: %f pts", self.fontSizeForRightLabels]];
+                [self.labelFontSizeForRightLabels setText:[NSString stringWithFormat:@"Right Labels: %.01f pts", self.fontSizeForRightLabels]];
             }
         }
     }
