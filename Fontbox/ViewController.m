@@ -17,6 +17,7 @@
 #pragma mark - // DEFINITIONS (Private) //
 
 #define DEFAULT_FONT_SIZE_FOR_RIGHT_LABELS 12.0
+#define DEFAULT_RIGHT_LABELS_ARE_BOLD NO
 
 @interface ViewController ()
 @property (nonatomic, strong) IBOutlet UILabel *labelHeadlineLeft;
@@ -35,10 +36,12 @@
 @property (nonatomic, strong) IBOutlet UILabel *labelFontSizeForRightLabels;
 @property (nonatomic, strong) NSString *preferredContentSizeCategory;
 @property (nonatomic) CGFloat fontSizeForRightLabels;
+@property (nonatomic) BOOL rightLabelsAreBold;
 - (void)setup;
 - (void)teardown;
 - (IBAction)buttonActionDecrease:(id)sender;
 - (IBAction)buttonActionIncrease:(id)sender;
+- (IBAction)buttonActionToggleBold:(id)sender;
 - (void)preferredContentSizeCategoryDidChange:(NSNotification *)notification;
 @end
 
@@ -62,6 +65,7 @@
 @synthesize labelFontSizeForRightLabels = _labelFontSizeForRightLabels;
 @synthesize preferredContentSizeCategory = preferredContentSizeCategory;
 @synthesize fontSizeForRightLabels = _fontSizeForRightLabels;
+@synthesize rightLabelsAreBold = _rightLabelsAreBold;
 
 #pragma mark - // INITS AND LOADS //
 
@@ -101,6 +105,7 @@
     [super viewWillAppear:animated];
     [self setPreferredContentSizeCategory:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     [self setFontSizeForRightLabels:DEFAULT_FONT_SIZE_FOR_RIGHT_LABELS];
+    [self setRightLabelsAreBold:DEFAULT_RIGHT_LABELS_ARE_BOLD];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -161,15 +166,28 @@
             [self.labelCaption2Left setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleCaption2]];
             [self.labelPreferredContentSizeCategory setText:self.preferredContentSizeCategory];
         }
-        else if ([keyPath isEqualToString:NSStringFromSelector(@selector(fontSizeForRightLabels))])
+        else if ([keyPath isEqualToString:NSStringFromSelector(@selector(fontSizeForRightLabels))] || [keyPath isEqualToString:NSStringFromSelector(@selector(rightLabelsAreBold))])
         {
-            [self.labelHeadlineRight setFont:[UIFont systemFontOfSize:self.fontSizeForRightLabels]];
-            [self.labelSubheadlineRight setFont:[UIFont systemFontOfSize:self.fontSizeForRightLabels]];
-            [self.labelBodyRight setFont:[UIFont systemFontOfSize:self.fontSizeForRightLabels]];
-            [self.labelFootnoteRight setFont:[UIFont systemFontOfSize:self.fontSizeForRightLabels]];
-            [self.labelCaption1Right setFont:[UIFont systemFontOfSize:self.fontSizeForRightLabels]];
-            [self.labelCaption2Right setFont:[UIFont systemFontOfSize:self.fontSizeForRightLabels]];
-            [self.labelFontSizeForRightLabels setText:[NSString stringWithFormat:@"Right Labels: %f pts", self.fontSizeForRightLabels]];
+            if (self.rightLabelsAreBold)
+            {
+                [self.labelHeadlineRight setFont:[UIFont boldSystemFontOfSize:self.fontSizeForRightLabels]];
+                [self.labelSubheadlineRight setFont:[UIFont boldSystemFontOfSize:self.fontSizeForRightLabels]];
+                [self.labelBodyRight setFont:[UIFont boldSystemFontOfSize:self.fontSizeForRightLabels]];
+                [self.labelFootnoteRight setFont:[UIFont boldSystemFontOfSize:self.fontSizeForRightLabels]];
+                [self.labelCaption1Right setFont:[UIFont boldSystemFontOfSize:self.fontSizeForRightLabels]];
+                [self.labelCaption2Right setFont:[UIFont boldSystemFontOfSize:self.fontSizeForRightLabels]];
+                [self.labelFontSizeForRightLabels setText:[NSString stringWithFormat:@"Right Labels: %f pts (Bold)", self.fontSizeForRightLabels]];
+            }
+            else
+            {
+                [self.labelHeadlineRight setFont:[UIFont systemFontOfSize:self.fontSizeForRightLabels]];
+                [self.labelSubheadlineRight setFont:[UIFont systemFontOfSize:self.fontSizeForRightLabels]];
+                [self.labelBodyRight setFont:[UIFont systemFontOfSize:self.fontSizeForRightLabels]];
+                [self.labelFootnoteRight setFont:[UIFont systemFontOfSize:self.fontSizeForRightLabels]];
+                [self.labelCaption1Right setFont:[UIFont systemFontOfSize:self.fontSizeForRightLabels]];
+                [self.labelCaption2Right setFont:[UIFont systemFontOfSize:self.fontSizeForRightLabels]];
+                [self.labelFontSizeForRightLabels setText:[NSString stringWithFormat:@"Right Labels: %f pts", self.fontSizeForRightLabels]];
+            }
         }
     }
 }
@@ -187,6 +205,7 @@
         [self setPreferredContentSizeCategory:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     }
     [self addObserver:self forKeyPath:NSStringFromSelector(@selector(fontSizeForRightLabels)) options:NSKeyValueObservingOptionOld context:NULL];
+    [self addObserver:self forKeyPath:NSStringFromSelector(@selector(rightLabelsAreBold)) options:NSKeyValueObservingOptionOld context:NULL];
 }
 
 - (void)teardown
@@ -199,6 +218,7 @@
         [self removeObserver:self forKeyPath:NSStringFromSelector(@selector(preferredContentSizeCategory))];
     }
     [self removeObserver:self forKeyPath:NSStringFromSelector(@selector(fontSizeForRightLabels)) context:NULL];
+    [self removeObserver:self forKeyPath:NSStringFromSelector(@selector(rightLabelsAreBold)) context:NULL];
 }
 
 - (IBAction)buttonActionDecrease:(id)sender
@@ -213,6 +233,13 @@
     if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
     
     [self setFontSizeForRightLabels:++self.fontSizeForRightLabels];
+}
+
+- (IBAction)buttonActionToggleBold:(id)sender
+{
+    if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
+    
+    [self setRightLabelsAreBold:!self.rightLabelsAreBold];
 }
 
 - (void)preferredContentSizeCategoryDidChange:(NSNotification *)notification
