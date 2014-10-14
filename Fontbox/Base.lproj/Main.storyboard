@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="5SG-ta-uBO">
     <dependencies>
+        <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -402,6 +403,32 @@
             </objects>
             <point key="canvasLocation" x="162" y="360"/>
         </scene>
+        <!--Table View Controller-->
+        <scene sceneID="a9J-k5-6AY">
+            <objects>
+                <tableViewController id="bBZ-ti-gv3" customClass="TableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="8em-gM-y7w">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FontNameCell" id="Gxw-Ah-Dae">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gxw-Ah-Dae" id="J9n-rz-udo">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="bBZ-ti-gv3" id="P8b-vi-Ja3"/>
+                            <outlet property="delegate" destination="bBZ-ti-gv3" id="qHo-Cl-5ck"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="syz-NV-YsG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="162" y="1076"/>
+        </scene>
         <!--Fontbox Paging View Controller-->
         <scene sceneID="1TJ-rS-m8s">
             <objects>
@@ -430,25 +457,20 @@
                                             <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wns-tS-FQ7">
                                                 <rect key="frame" x="320" y="0.0" width="320" height="568"/>
                                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <connections>
+                                                    <segue destination="bBZ-ti-gv3" kind="embed" id="HYO-Hs-ZRG"/>
+                                                </connections>
                                             </containerView>
-                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Xs-YS-lOZ">
-                                                <rect key="frame" x="320" y="0.0" width="320" height="568"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="wns-tS-FQ7" firstAttribute="top" secondItem="fY6-ix-gYl" secondAttribute="top" id="0GR-ym-0NN"/>
-                                            <constraint firstAttribute="trailing" secondItem="7Xs-YS-lOZ" secondAttribute="trailing" id="8rg-K5-gu2"/>
-                                            <constraint firstItem="7Xs-YS-lOZ" firstAttribute="top" secondItem="fY6-ix-gYl" secondAttribute="top" id="CIE-Zu-7ZP"/>
                                             <constraint firstItem="p6E-y3-HxJ" firstAttribute="top" secondItem="fY6-ix-gYl" secondAttribute="top" id="HeV-Kz-ZZr"/>
                                             <constraint firstAttribute="bottom" secondItem="wns-tS-FQ7" secondAttribute="bottom" id="bf8-rb-2cz"/>
                                             <constraint firstAttribute="trailing" secondItem="wns-tS-FQ7" secondAttribute="trailing" id="eP0-hr-kny"/>
                                             <constraint firstItem="wns-tS-FQ7" firstAttribute="leading" secondItem="p6E-y3-HxJ" secondAttribute="trailing" id="evr-ff-l98"/>
                                             <constraint firstAttribute="bottom" secondItem="p6E-y3-HxJ" secondAttribute="bottom" id="gDZ-jW-rJC"/>
-                                            <constraint firstAttribute="bottom" secondItem="7Xs-YS-lOZ" secondAttribute="bottom" id="pI1-YG-6CU"/>
                                             <constraint firstItem="p6E-y3-HxJ" firstAttribute="leading" secondItem="fY6-ix-gYl" secondAttribute="leading" id="rcc-EB-kaC"/>
-                                            <constraint firstItem="7Xs-YS-lOZ" firstAttribute="leading" secondItem="p6E-y3-HxJ" secondAttribute="trailing" id="vyX-EC-MZs"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -456,8 +478,6 @@
                                     <constraint firstAttribute="width" secondItem="wns-tS-FQ7" secondAttribute="width" id="92E-r0-J5Z"/>
                                     <constraint firstAttribute="height" secondItem="wns-tS-FQ7" secondAttribute="height" id="AHM-kc-31O"/>
                                     <constraint firstAttribute="width" secondItem="p6E-y3-HxJ" secondAttribute="width" id="bIH-GT-EZU"/>
-                                    <constraint firstAttribute="width" secondItem="7Xs-YS-lOZ" secondAttribute="width" id="pxF-tt-FHy"/>
-                                    <constraint firstAttribute="height" secondItem="7Xs-YS-lOZ" secondAttribute="height" id="sq7-W5-vTo"/>
                                     <constraint firstAttribute="height" secondItem="p6E-y3-HxJ" secondAttribute="height" id="uFj-so-KC4"/>
                                 </constraints>
                                 <connections>

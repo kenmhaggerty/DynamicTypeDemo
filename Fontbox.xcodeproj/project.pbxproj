@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7D1F92F119EDB938007118CA /* FontboxPagingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1F92F019EDB938007118CA /* FontboxPagingViewController.m */; };
+		7D1F92F619EDC9FA007118CA /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D1F92F519EDC9FA007118CA /* TableViewController.m */; };
 		7D569D8819EC6BBA00BC2C7F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D569D8719EC6BBA00BC2C7F /* main.m */; };
 		7D569D8B19EC6BBA00BC2C7F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D569D8A19EC6BBA00BC2C7F /* AppDelegate.m */; };
 		7D569D8E19EC6BBA00BC2C7F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D569D8D19EC6BBA00BC2C7F /* ViewController.m */; };
@@ -37,6 +38,8 @@
 		372E2751FDB27E88C8CCCDBA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7D1F92EF19EDB938007118CA /* FontboxPagingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontboxPagingViewController.h; sourceTree = "<group>"; };
 		7D1F92F019EDB938007118CA /* FontboxPagingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontboxPagingViewController.m; sourceTree = "<group>"; };
+		7D1F92F419EDC9FA007118CA /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		7D1F92F519EDC9FA007118CA /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		7D569D8219EC6BBA00BC2C7F /* Fontbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fontbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D569D8619EC6BBA00BC2C7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D569D8719EC6BBA00BC2C7F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -98,6 +101,28 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		7D1F92F219EDC9C9007118CA /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7D1F92EF19EDB938007118CA /* FontboxPagingViewController.h */,
+				7D1F92F019EDB938007118CA /* FontboxPagingViewController.m */,
+				7D569D8C19EC6BBA00BC2C7F /* ViewController.h */,
+				7D569D8D19EC6BBA00BC2C7F /* ViewController.m */,
+				7D1F92F419EDC9FA007118CA /* TableViewController.h */,
+				7D1F92F519EDC9FA007118CA /* TableViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		7D1F92F319EDC9DB007118CA /* UIFont+Dynamic */ = {
+			isa = PBXGroup;
+			children = (
+				7D56E05319ED938000A1D580 /* UIFont+Dynamic.h */,
+				7D56E05419ED938000A1D580 /* UIFont+Dynamic.m */,
+			);
+			name = "UIFont+Dynamic";
+			sourceTree = "<group>";
+		};
 		7D569D7919EC6BBA00BC2C7F = {
 			isa = PBXGroup;
 			children = (
@@ -124,15 +149,11 @@
 				7D569DAE19EC6BCF00BC2C7F /* AKDebugger */,
 				7D569DB619EC823300BC2C7F /* AKSystemInfo */,
 				7D56E05219ECBE1600A1D580 /* PrivateInfo */,
+				7D1F92F319EDC9DB007118CA /* UIFont+Dynamic */,
 				7D569D8919EC6BBA00BC2C7F /* AppDelegate.h */,
 				7D569D8A19EC6BBA00BC2C7F /* AppDelegate.m */,
-				7D569D8C19EC6BBA00BC2C7F /* ViewController.h */,
-				7D569D8D19EC6BBA00BC2C7F /* ViewController.m */,
-				7D56E05319ED938000A1D580 /* UIFont+Dynamic.h */,
-				7D56E05419ED938000A1D580 /* UIFont+Dynamic.m */,
 				7D569D8F19EC6BBA00BC2C7F /* Main.storyboard */,
-				7D1F92EF19EDB938007118CA /* FontboxPagingViewController.h */,
-				7D1F92F019EDB938007118CA /* FontboxPagingViewController.m */,
+				7D1F92F219EDC9C9007118CA /* View Controllers */,
 				7D569D9219EC6BBA00BC2C7F /* Images.xcassets */,
 				7D569D8519EC6BBA00BC2C7F /* Supporting Files */,
 			);
@@ -331,6 +352,7 @@
 				7D1F92F119EDB938007118CA /* FontboxPagingViewController.m in Sources */,
 				7D56E05519ED938000A1D580 /* UIFont+Dynamic.m in Sources */,
 				7D569DAD19EC6BCA00BC2C7F /* AKDebugger.m in Sources */,
+				7D1F92F619EDC9FA007118CA /* TableViewController.m in Sources */,
 				7D569D8E19EC6BBA00BC2C7F /* ViewController.m in Sources */,
 				7D569DB519EC822E00BC2C7F /* AKSystemInfo.m in Sources */,
 				7D569DB119EC6BDB00BC2C7F /* AKDebuggerRules_Fontbox.m in Sources */,
