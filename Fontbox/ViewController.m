@@ -203,16 +203,14 @@
 {
     if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
     
-    NSUInteger indexOfCurrentContentSize = [CONTENT_SIZE_ARRAY indexOfObject:self.preferredContentSizeCategory];
-    if (indexOfCurrentContentSize > 0) [self setPreferredContentSizeCategory:[CONTENT_SIZE_ARRAY objectAtIndex:--indexOfCurrentContentSize]];
+    [self setFontSizeForRightLabels:--self.fontSizeForRightLabels];
 }
 
 - (IBAction)buttonActionIncrease:(id)sender
 {
     if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
     
-    NSUInteger indexOfCurrentContentSize = [CONTENT_SIZE_ARRAY indexOfObject:self.preferredContentSizeCategory];
-    if (indexOfCurrentContentSize < [CONTENT_SIZE_ARRAY count]-1) [self setPreferredContentSizeCategory:[CONTENT_SIZE_ARRAY objectAtIndex:++indexOfCurrentContentSize]];
+    [self setFontSizeForRightLabels:++self.fontSizeForRightLabels];
 }
 
 - (void)preferredContentSizeCategoryDidChange:(NSNotification *)notification
