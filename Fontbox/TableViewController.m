@@ -148,6 +148,22 @@
 
 #pragma mark - // DELEGATED METHODS (UITableViewDelegate) //
 
+#pragma mark - // DELEGATED METHODS (FontDataSource) //
+
+- (void)previousFont
+{
+    if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
+    
+    
+}
+
+- (void)nextFont
+{
+    if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
+    
+    
+}
+
 #pragma mark - // OVERWRITTEN METHODS //
 
 #pragma mark - // PRIVATE METHODS //

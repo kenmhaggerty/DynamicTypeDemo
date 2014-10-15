@@ -11,11 +11,14 @@
 #pragma mark - // IMPORTS (Public) //
 
 #import <UIKit/UIKit.h>
+#import "FontViewController.h"
 
 #pragma mark - // PROTOCOLS //
 
 #pragma mark - // DEFINITIONS (Public) //
 
-@interface TableViewController : UITableViewController
-
+@interface TableViewController : UITableViewController <FontDataSource>
+@property (nonatomic, strong) NSString *fontName;
+- (void)previousFont;
+- (void)nextFont;
 @end

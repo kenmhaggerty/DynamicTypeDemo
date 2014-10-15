@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  FontViewController.h
 //  Fontbox
 //
 //  Created by Ken M. Haggerty on 10/13/14.
@@ -14,7 +14,15 @@
 
 #pragma mark - // PROTOCOLS //
 
+@protocol FontDataSource <NSObject>
+@required
+@property (nonatomic, strong) NSString *fontName;
+@optional
+- (void)previousFont;
+- (void)nextFont;
+@end
+
 #pragma mark - // DEFINITIONS (Public) //
 
-@interface ViewController : UIViewController
+@interface FontViewController : UIViewController
 @end
