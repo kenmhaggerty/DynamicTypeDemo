@@ -13,14 +13,13 @@
 #import "FontViewController.h"
 #import "AKDebugger.h"
 #import "AKSystemInfo.h"
+#import "FontsManager.h"
 #import "UIFont+Dynamic.h"
 
 #pragma mark - // DEFINITIONS (Private) //
 
-#define DEFAULT_FONT_NAME @"HelveticaNeue"
-
 @interface FontViewController ()
-@property (nonatomic, strong) IBOutlet NSObject <FontDataSource> *fontDataSource;
+@property (nonatomic, strong) NSString *currentFont;
 @property (nonatomic, strong) IBOutlet UILabel *labelHeadlineLeft;
 @property (nonatomic, strong) IBOutlet UILabel *labelSubheadlineLeft;
 @property (nonatomic, strong) IBOutlet UILabel *labelBodyLeft;
@@ -38,6 +37,7 @@
 @property (nonatomic, strong) NSString *preferredContentSizeCategory;
 - (void)setup;
 - (void)teardown;
+- (void)currentFontDidChange:(NSNotification *)notification;
 - (IBAction)buttonActionLeft:(id)sender;
 - (IBAction)buttonActionRight:(id)sender;
 - (void)preferredContentSizeCategoryDidChange:(NSNotification *)notification;
@@ -49,7 +49,7 @@
 
 #pragma mark - // SETTERS AND GETTERS //
 
-@synthesize fontDataSource = _fontDataSource;
+@synthesize currentFont = _currentFont;
 @synthesize labelHeadlineLeft = _labelHeadlineLeft;
 @synthesize labelSubheadlineLeft = _labelSubheadlineLeft;
 @synthesize labelBodyLeft = _labelBodyLeft;
@@ -109,6 +109,7 @@
     [self.labelFontName setNumberOfLines:1];
     [self.labelFontName setLineBreakMode:NSLineBreakByTruncatingHead];
     [self.labelFontName setAdjustsFontSizeToFitWidth:YES];
+    [self setCurrentFont:[FontsManager currentFont]];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -159,29 +160,16 @@
     
     if ([object isEqual:self])
     {
-        if ([keyPath isEqualToString:NSStringFromSelector(@selector(fontDataSource))])
-        {
-            NSObject *oldfontDataSource = [change valueForKey:NSKeyValueChangeOldKey];
-            if (oldfontDataSource) [oldfontDataSource removeObserver:self forKeyPath:NSStringFromSelector(@selector(fontName)) context:nil];
-            if (self.fontDataSource) [self.fontDataSource addObserver:self forKeyPath:NSStringFromSelector(@selector(fontName)) options:NSKeyValueObservingOptionOld context:NULL];
-        }
-        else if ([keyPath isEqualToString:NSStringFromSelector(@selector(preferredContentSizeCategory))])
+        if ([keyPath isEqualToString:NSStringFromSelector(@selector(preferredContentSizeCategory))])
         {
             [self refreshLeftLabels];
-            NSString *preferredFontName = self.fontDataSource.fontName;
-            if (!preferredFontName) preferredFontName = DEFAULT_FONT_NAME;
-            [self refreshRightLabelsWithFont:preferredFontName];
+            [self refreshRightLabelsWithFont:self.currentFont];
             [self.labelPreferredContentSizeCategory setText:self.preferredContentSizeCategory];
         }
-    }
-    else if ([object isEqual:self.fontDataSource])
-    {
-        if ([keyPath isEqualToString:NSStringFromSelector(@selector(fontName))])
+        else if ([keyPath isEqualToString:NSStringFromSelector(@selector(currentFont))])
         {
-            NSString *preferredFontName = self.fontDataSource.fontName;
-            if (!preferredFontName) preferredFontName = DEFAULT_FONT_NAME;
-            [self refreshRightLabelsWithFont:preferredFontName];
-            [self.labelFontName setText:preferredFontName];
+            [self refreshRightLabelsWithFont:self.currentFont];
+            [self.labelFontName setText:self.currentFont];
         }
     }
 }
@@ -198,8 +186,8 @@
         [self addObserver:self forKeyPath:NSStringFromSelector(@selector(preferredContentSizeCategory)) options:NSKeyValueObservingOptionOld context:NULL];
         [self setPreferredContentSizeCategory:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     }
-    [self addObserver:self forKeyPath:NSStringFromSelector(@selector(fontDataSource)) options:NSKeyValueObservingOptionOld context:nil];
-    [self.fontDataSource addObserver:self forKeyPath:NSStringFromSelector(@selector(fontName)) options:NSKeyValueObservingOptionOld context:NULL];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(currentFontDidChange:) name:NOTIFICATION_FONT_NAME_DID_CHANGE object:nil];
+    [self addObserver:self forKeyPath:NSStringFromSelector(@selector(currentFont)) options:NSKeyValueObservingOptionOld context:NULL];
 }
 
 - (void)teardown
@@ -211,22 +199,29 @@
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIContentSizeCategoryDidChangeNotification object:nil];
         [self removeObserver:self forKeyPath:NSStringFromSelector(@selector(preferredContentSizeCategory))];
     }
-    [self removeObserver:self forKeyPath:NSStringFromSelector(@selector(fontDataSource)) context:nil];
-    if (self.fontDataSource) [self.fontDataSource removeObserver:self forKeyPath:NSStringFromSelector(@selector(fontName)) context:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NOTIFICATION_FONT_NAME_DID_CHANGE object:nil];
+    [self removeObserver:self forKeyPath:NSStringFromSelector(@selector(currentFont)) context:NULL];
+}
+
+- (void)currentFontDidChange:(NSNotification *)notification
+{
+    if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
+    
+    [self setCurrentFont:[FontsManager currentFont]];
 }
 
 - (IBAction)buttonActionLeft:(id)sender
 {
     if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
     
-    [self.fontDataSource previousFont];
+    [FontsManager switchToPreviousFont];
 }
 
 - (IBAction)buttonActionRight:(id)sender
 {
     if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
     
-    [self.fontDataSource nextFont];
+    [FontsManager switchToNextFont];
 }
 
 - (void)preferredContentSizeCategoryDidChange:(NSNotification *)notification
