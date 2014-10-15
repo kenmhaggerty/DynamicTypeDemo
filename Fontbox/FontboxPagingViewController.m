@@ -18,6 +18,7 @@
 @interface FontboxPagingViewController ()
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet UIView *viewForScrollView;
+@property (nonatomic) CGRect currentScrollViewFrame;
 - (void)setup;
 - (void)teardown;
 @end
@@ -28,6 +29,20 @@
 
 @synthesize scrollView = _scrollView;
 @synthesize viewForScrollView = _viewForScrollView;
+@synthesize currentScrollViewFrame = _currentScrollViewFrame;
+
+- (void)setCurrentScrollViewFrame:(CGRect)currentScrollViewFrame
+{
+    if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKSetter rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
+    
+    if (!CGRectEqualToRect(_currentScrollViewFrame, currentScrollViewFrame))
+    {
+        CGFloat changeInWidth = currentScrollViewFrame.size.width/_currentScrollViewFrame.size.width;
+        CGFloat changeInHeight = currentScrollViewFrame.size.height/_currentScrollViewFrame.size.height;
+        if (!CGRectEqualToRect(_currentScrollViewFrame, CGRectZero)) [self.scrollView setContentOffset:CGPointMake(self.scrollView.contentOffset.x*changeInWidth, self.scrollView.contentOffset.y*changeInHeight)];
+        _currentScrollViewFrame = currentScrollViewFrame;
+    }
+}
 
 #pragma mark - // INITS AND LOADS //
 
@@ -64,7 +79,7 @@
     if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKSetup rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
     
     [super viewWillAppear:animated];
-    [self.scrollView setContentSize:self.viewForScrollView.frame.size];
+    [self addObserver:self forKeyPath:NSStringFromSelector(@selector(scrollView)) options:NSKeyValueObservingOptionOld context:NULL];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -72,6 +87,7 @@
     if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKSetup rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
     
     [super viewDidAppear:animated];
+    [self.scrollView setContentSize:self.viewForScrollView.frame.size];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -108,6 +124,14 @@
 
 #pragma mark - // OVERWRITTEN METHODS //
 
+- (void)viewDidLayoutSubviews
+{
+    if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
+    
+    [super viewDidLayoutSubviews];
+    [self setCurrentScrollViewFrame:self.scrollView.frame];
+}
+
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
@@ -123,11 +147,14 @@
     
     [self.scrollView setScrollEnabled:YES];
     [self.scrollView setPagingEnabled:YES];
+    [self setCurrentScrollViewFrame:self.scrollView.frame];
 }
 
 - (void)teardown
 {
     if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKSetup rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
+    
+    [self removeObserver:self forKeyPath:NSStringFromSelector(@selector(scrollView)) context:NULL];
 }
 
 @end
