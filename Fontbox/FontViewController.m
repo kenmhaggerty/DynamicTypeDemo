@@ -18,6 +18,8 @@
 
 #pragma mark - // DEFINITIONS (Private) //
 
+#define DEFAULT_FONT_SIZE_IOS_6 16.0
+
 @interface FontViewController ()
 @property (nonatomic, strong) NSString *currentFont;
 @property (nonatomic, strong) IBOutlet UILabel *labelHeadlineLeft;
@@ -102,7 +104,7 @@
     if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKSetup rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
     
     [super viewWillAppear:animated];
-    [self setPreferredContentSizeCategory:[[UIApplication sharedApplication] preferredContentSizeCategory]];
+    if ([AKSystemInfo iOSVersion] >= 7.0) [self setPreferredContentSizeCategory:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     [self.labelPreferredContentSizeCategory setNumberOfLines:1];
     [self.labelPreferredContentSizeCategory setLineBreakMode:NSLineBreakByTruncatingHead];
     [self.labelPreferredContentSizeCategory setAdjustsFontSizeToFitWidth:YES];
@@ -247,12 +249,24 @@
 {
     if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
     
-    [self.labelHeadlineRight setFont:[UIFont preferredFontWithName:fontName textStyle:UIFontTextStyleHeadline]];
-    [self.labelSubheadlineRight setFont:[UIFont preferredFontWithName:fontName textStyle:UIFontTextStyleSubheadline]];
-    [self.labelBodyRight setFont:[UIFont preferredFontWithName:fontName textStyle:UIFontTextStyleBody]];
-    [self.labelFootnoteRight setFont:[UIFont preferredFontWithName:fontName textStyle:UIFontTextStyleFootnote]];
-    [self.labelCaption1Right setFont:[UIFont preferredFontWithName:fontName textStyle:UIFontTextStyleCaption1]];
-    [self.labelCaption2Right setFont:[UIFont preferredFontWithName:fontName textStyle:UIFontTextStyleCaption2]];
+    if ([AKSystemInfo iOSVersion] < 7.0)
+    {
+        [self.labelHeadlineRight setFont:[UIFont fontWithName:fontName size:DEFAULT_FONT_SIZE_IOS_6]];
+        [self.labelSubheadlineRight setFont:[UIFont fontWithName:fontName size:DEFAULT_FONT_SIZE_IOS_6]];
+        [self.labelBodyRight setFont:[UIFont fontWithName:fontName size:DEFAULT_FONT_SIZE_IOS_6]];
+        [self.labelFootnoteRight setFont:[UIFont fontWithName:fontName size:DEFAULT_FONT_SIZE_IOS_6]];
+        [self.labelCaption1Right setFont:[UIFont fontWithName:fontName size:DEFAULT_FONT_SIZE_IOS_6]];
+        [self.labelCaption2Right setFont:[UIFont fontWithName:fontName size:DEFAULT_FONT_SIZE_IOS_6]];
+    }
+    else
+    {
+        [self.labelHeadlineRight setFont:[UIFont preferredFontWithName:fontName textStyle:UIFontTextStyleHeadline]];
+        [self.labelSubheadlineRight setFont:[UIFont preferredFontWithName:fontName textStyle:UIFontTextStyleSubheadline]];
+        [self.labelBodyRight setFont:[UIFont preferredFontWithName:fontName textStyle:UIFontTextStyleBody]];
+        [self.labelFootnoteRight setFont:[UIFont preferredFontWithName:fontName textStyle:UIFontTextStyleFootnote]];
+        [self.labelCaption1Right setFont:[UIFont preferredFontWithName:fontName textStyle:UIFontTextStyleCaption1]];
+        [self.labelCaption2Right setFont:[UIFont preferredFontWithName:fontName textStyle:UIFontTextStyleCaption2]];
+    }
 }
 
 @end

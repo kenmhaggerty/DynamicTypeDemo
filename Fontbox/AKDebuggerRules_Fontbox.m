@@ -16,7 +16,7 @@
 
 // RULES (General) //
 
-#define MASTER_ON YES
+#define MASTER_ON NO
 
 #define PRINT_CLASS_METHODS NO
 #define PRINT_INSTANCE_METHODS YES

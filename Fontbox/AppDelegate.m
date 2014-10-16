@@ -30,8 +30,8 @@
 {
     if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKSetup rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
     
-    [Lookback_Weak setupWithAppToken:[PrivateInfo lookbackAppToken]];
-    [Lookback_Weak lookback].shakeToRecord = YES;
+//    [Lookback_Weak setupWithAppToken:[PrivateInfo lookbackAppToken]];
+//    [Lookback_Weak lookback].shakeToRecord = YES;
     return YES;
 }
 

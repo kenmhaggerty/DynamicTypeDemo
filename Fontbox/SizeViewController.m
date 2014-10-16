@@ -103,7 +103,7 @@
     if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKSetup rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
     
     [super viewWillAppear:animated];
-    [self setPreferredContentSizeCategory:[[UIApplication sharedApplication] preferredContentSizeCategory]];
+    if ([AKSystemInfo iOSVersion] >= 7.0) [self setPreferredContentSizeCategory:[[UIApplication sharedApplication] preferredContentSizeCategory]];
     [self setFontSizeForRightLabels:DEFAULT_FONT_SIZE_FOR_RIGHT_LABELS];
     [self setRightLabelsAreBold:DEFAULT_RIGHT_LABELS_ARE_BOLD];
     [self.labelPreferredContentSizeCategory setNumberOfLines:1];
