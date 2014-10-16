@@ -24,8 +24,6 @@
 - (void)setup;
 - (void)teardown;
 - (void)currentFontDidChange:(NSNotification *)notification;
-- (void)selectRowAtIndexPath:(NSIndexPath *)indexPath;
-- (void)deselectRowAtIndexPath:(NSIndexPath *)indexPath;
 @end
 
 @implementation TableViewController
@@ -147,14 +145,25 @@
 {
     if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
     
-    [self selectRowAtIndexPath:indexPath];
+    if (indexPath.row < [FontsManager fontNames].count)
+    {
+        [FontsManager setCurrentFont:[[FontsManager fontNames] objectAtIndex:indexPath.row]];
+        [[tableView cellForRowAtIndexPath:indexPath] setHighlighted:YES];
+    }
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
+    
+    return indexPath;
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
     
-    [self deselectRowAtIndexPath:indexPath];
+    [[tableView cellForRowAtIndexPath:indexPath] setHighlighted:NO];
 }
 
 #pragma mark - // OVERWRITTEN METHODS //
@@ -168,18 +177,17 @@
         if ([keyPath isEqualToString:NSStringFromSelector(@selector(currentFont))])
         {
             NSArray *fontNames = [FontsManager fontNames];
-            NSString *oldFontName = [change valueForKey:NSKeyValueChangeOldKey];
-            if ([fontNames containsObject:oldFontName])
-            {
-                NSUInteger indexOld = [fontNames indexOfObject:oldFontName];
-                NSLog(@"[TEST] indexOld = %lu", indexOld);
-                [self deselectRowAtIndexPath:[NSIndexPath indexPathForRow:indexOld inSection:1]];
-            }
             if ([fontNames containsObject:self.currentFont])
             {
-                NSUInteger indexNew = [fontNames indexOfObject:self.currentFont];
-                NSLog(@"[TEST] indexNew = %lu", indexNew);
-                [self selectRowAtIndexPath:[NSIndexPath indexPathForRow:indexNew inSection:1]];
+                NSIndexPath *indexPathOld = [NSIndexPath indexPathForRow:[fontNames indexOfObject:[change valueForKey:NSKeyValueChangeOldKey]] inSection:0];
+                [self.tableView deselectRowAtIndexPath:indexPathOld animated:NO];
+                indexPathOld = [self.tableView.delegate tableView:self.tableView willDeselectRowAtIndexPath:indexPathOld];
+                [self.tableView.delegate tableView:self.tableView didDeselectRowAtIndexPath:indexPathOld];
+                NSIndexPath *indexPathNew = [NSIndexPath indexPathForRow:[fontNames indexOfObject:self.currentFont] inSection:0];
+                [self.tableView selectRowAtIndexPath:indexPathNew animated:NO scrollPosition:UITableViewScrollPositionNone];
+                indexPathNew = [self.tableView.delegate tableView:self.tableView willSelectRowAtIndexPath:indexPathNew];
+                [self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:indexPathNew];
+                [self.tableView scrollToRowAtIndexPath:indexPathNew atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
             }
         }
     }
@@ -211,31 +219,6 @@
     if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
     
     [self setCurrentFont:[FontsManager currentFont]];
-}
-
-- (void)selectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
-    
-    NSLog(@"[TEST] selecting row %lu", indexPath.row);
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    if (!cell) NSLog(@"[TEST] cell does not exist to select");
-    [cell setHighlighted:YES];
-    if ([self.tableView cellForRowAtIndexPath:indexPath]) [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:NO];
-    if (indexPath.row < [FontsManager fontNames].count)
-    {
-        [FontsManager setCurrentFont:[[FontsManager fontNames] objectAtIndex:indexPath.row]];
-    }
-}
-
-- (void)deselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if ([AKDebugger printForMethod:METHOD_NAME logType:AKMethodName methodType:AKUnspecified rules:RULES_CLASS]) NSLog(@"%s", __PRETTY_FUNCTION__);
-    
-    NSLog(@"[TEST] deselecting row %lu", indexPath.row);
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    if (!cell) NSLog(@"[TEST] cell does not exist to deselect");
-    [[self.tableView cellForRowAtIndexPath:indexPath] setHighlighted:NO];
 }
 
 @end
